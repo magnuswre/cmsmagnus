@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import Placeholder3 from '../../assets/369x310.svg'
 import { MdAddShoppingCart } from "react-icons/md";
 
 
@@ -8,7 +6,6 @@ const HomeSaleProduct = ({ card }) => {
   return (
     <div className='sale-card'>
       <div className='image-container'>
-        {/* <img src={card.imageURL} /> */}
         <img src={card.imageURL} />
       </div>
       <div className='product-title'>

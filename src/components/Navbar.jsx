@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FaAdn } from "react-icons/fa";
 import { BsSearch, BsCart3 } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
-// import Registration from '../pages/Registration';
 import ShoppingCart from './shoppingcart/ShoppingCart';
 import { CartContext } from '../contexts/CartContext';
 import { UserContext } from '../contexts/UserContext';
@@ -44,7 +43,6 @@ const Navbar = () => {
         {user ? (
           <>
           <NavLink to='/userprofile'>
-            {/* <li className='text-uppercase'>{user}</li> */}
             <li className='text-uppercase'>USER</li>
           </NavLink>
             <li>

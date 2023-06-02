@@ -124,7 +124,6 @@ return (
  
       <div className='form-group'>
         <label htmlFor="subject">subject</label>
-        {/* <input type="text" name='subject' className='input' id='subject' value={formData.subject} onChange={handleChaneInput}/> */}
         <textarea  
         name="subject" 
         id="subject"  

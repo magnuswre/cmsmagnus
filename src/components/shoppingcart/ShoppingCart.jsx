@@ -1,8 +1,7 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState  } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { CartContext } from "../../contexts/CartContext";
 import { FaTrash } from "react-icons/fa";
-// import placeholder from '../assets/120x113.svg'
 
 const ShoppingCart = () => {
   const { cartItems, totalQuantity, removeFromCart, clearCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
@@ -20,10 +19,7 @@ const ShoppingCart = () => {
 
   };
 
-  // const handleVis = () => {
-  //   isToggled(true)
-  // }
- 
+  
   
 
   const calculateTotal = () => {

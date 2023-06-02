@@ -1,16 +1,12 @@
 import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-// import authService from '../services/authService'
 
 export const ProductContext = createContext()
 
 const ProductContextProvider = ({ children, limit,  }) => {
 
-  // const handleLogin = async () => {
-  //   await authService.login(() => {})
-  //   console.log(authService.isAutenticated())
-  // }
+  
 
   const [data, setData] = useState([]);
   const { productId } = useParams() 
@@ -57,10 +53,7 @@ const ProductContextProvider = ({ children, limit,  }) => {
           console.log("Error fetching data:", error);
         }
       };
-      // useEffect(() => {
-      //   fetchDataTwo()
-      // }, [formDataTwo])
-      // fetchData();
+      
       fetchData()
   }
 

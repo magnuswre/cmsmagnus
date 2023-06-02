@@ -8,7 +8,6 @@ const UserProfile = () => {
   console.log(orderData)
 
   if (!orderData) {
-    // Handle the case where data is not yet available
     return <div>Loading...</div>
   }
 
@@ -47,28 +46,3 @@ export default UserProfile
 
 
 
-
-
-
-// import { useContext } from 'react'
-// import { OrderContext } from '../contexts/OrderContext'
-// // import { Link } from 'react-router-dom'
-
-// const UserProfile = () => {
-//   const { data } = useContext(OrderContext) 
-
-//   console.log(data)
-
-//   return (
-//     <div className="orders">
-
-//       {data.map(orders => (
-        
-//      console.log(orders)
-//       ))
-//       }
-//     </div>
-//   );
-// }
-
-// export default UserProfile

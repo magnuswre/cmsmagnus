@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from 'react';
-// test
 
 export const CartContext = createContext();
 

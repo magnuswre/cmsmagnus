@@ -19,12 +19,12 @@ exports.verifyTokenAdmin = (req, res, next) => {
     }
 }
 
-// för att logga in som admin email: mwdev81@gmail.com - password: Bytmig123
+// login admin email: mwdev81@gmail.com - password: Bytmig123
      
 exports.checkAdmin = (req, res, next) => {
   const adminId = '646f47da432224a6ad148144';
 
-  if (req.adminId === adminId) { // Compare the adminId with the predefined adminId
+  if (req.adminId === adminId) { 
     next();
   } else {
     res.status(401).json({
@@ -32,6 +32,14 @@ exports.checkAdmin = (req, res, next) => {
     });
   }
 };
+
+
+
+
+
+
+
+
 
 // USER
 
@@ -65,7 +73,7 @@ exports.checkAdmin = (req, res, next) => {
 //     }
 // }
 
-// // för att logga in som admin email: mwdev81@gmail.com - password: Bytmig123
+// mwdev81@gmail.com - password: Bytmig123
 // const User = ['646f47da432224a6ad148144']
 
 

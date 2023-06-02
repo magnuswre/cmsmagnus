@@ -6,8 +6,6 @@ import ProductDetailsProvider from '../contexts/ProductDetailContext';
 
 const ProductDetails = () => {
 
-
-
   return (
     <div>
       <ProductDetailHero />

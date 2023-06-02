@@ -1,6 +1,6 @@
 import  { useState } from 'react'
 import axios from 'axios'
-import {useNavigate, Navigate, Link} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 
 const Login = () => {
@@ -23,9 +23,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // console.log(formData);
-
 
     const res = await axios.post('http://localhost:8080/api/user/login', formData)
     console.log(res);

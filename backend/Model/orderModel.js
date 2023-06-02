@@ -17,7 +17,6 @@ exports.createNewOrder = async (req, res) => {
             status
 
         })
-    //   res.status(201).json(data)
       res.status(201).json({ userId: data.userId })
 
 

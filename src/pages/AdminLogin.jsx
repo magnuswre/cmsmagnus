@@ -2,7 +2,6 @@ import  { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import {useNavigate, Navigate, Link} from 'react-router-dom'
 import { UserContext } from '../contexts/UserContext'
-// import { AdminContext } from '../contexts/AdminContext'
 
 const AdminLogin = () => {
 
@@ -21,11 +20,7 @@ const AdminLogin = () => {
     }
   }, []);
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('admin');
-  //   setAdmin(null);
-  // };
+  
 
  const handleChange = e => {
     setFormData(preData => {
@@ -44,7 +39,6 @@ const AdminLogin = () => {
     const user = res.data.token;
       setUser(user)
       localStorage.setItem('token', JSON.stringify(res.data.token))
-      // localStorage.setItem('admin', JSON.stringify(admin))
     console.log(res);
     navigate('/adminPage')
     } catch (error) {
@@ -59,7 +53,7 @@ const AdminLogin = () => {
       <p className='form-text'>Admin Login</p>
       <form onSubmit={handleSubmit}>
         <div className='form-group'>
-          <label htmlFor="email">E-mail*</label><p className='red-text' ><Link className='error-text' to={'/register'}>Don't have an Account yet?</Link></p>
+          <label htmlFor="email">E-mail*</label><p className='red-text' ></p>
           <input type="email" name='email' className='input' id='email' value={formData.email} onChange={handleChange}/>
         </div>
         <div className='form-group'>

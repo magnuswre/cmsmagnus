@@ -1,7 +1,5 @@
-import {useContext, useEffect, useState} from 'react'
+import { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import axios from 'axios'
-
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Product from './pages/Product'
@@ -13,10 +11,8 @@ import ProductDetails from './pages/ProductDetails.jsx'
 import AdminLogin from './pages/AdminLogin'
 import AdminPage from './pages/AdminPage'
 import AdminProductDetails from './pages/AdminProductDetails'
-// import { AdminContext } from './contexts/AdminContext'
 import Protected from './components/Protected'
 import AdminOrders from './pages/AdminOrders'
-
 import AdminOrderDetail from './pages/AdminOrderDetail'
 import OrderContextProvider from './contexts/OrderContext'
 import { UserContext } from './contexts/UserContext'
@@ -25,17 +21,8 @@ import UserProfile from './pages/UserProfile'
 
 const App = () => {
 
-  // const { admin } = useContext(AdminContext)
   const { user } = useContext(UserContext)
   console.log(user)
-
-  // const [isSignedIn, setIsSignedIn] = useState(null)
-  // const signin = () => {
-  //   setIsSignedIn(true)
-  // }
-  // const signout = () => {
-  //   setIsSignedIn(false)
-  // }
 
  return (
     <div>
@@ -83,12 +70,7 @@ const App = () => {
                </OrderContextProvider>
           </Protected> 
           }/>
-
-
-          
        </Routes>
-
-
       <Footer />
     </div>
   )

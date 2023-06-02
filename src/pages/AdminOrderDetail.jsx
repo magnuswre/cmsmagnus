@@ -61,7 +61,6 @@ const AdminOrderDetail = () => {
                 autoComplete="off"
                 checked={selectedRadio === 'pending'}
                 onChange={handleRadioChange}
-                // onClick={handleStatus}
               />
               <label className="btn btn-outline-primary" htmlFor="radio1">
                 pending
@@ -76,7 +75,6 @@ const AdminOrderDetail = () => {
                 autoComplete="off"
                 checked={selectedRadio === 'shipped'}
                 onChange={handleRadioChange}
-                // onClick={handleStatus}
               />
               <label className="btn btn-outline-primary" htmlFor="radio2">
                 shipped
@@ -91,7 +89,6 @@ const AdminOrderDetail = () => {
                 autoComplete="off"
                 checked={selectedRadio === 'completed'}
                 onChange={handleRadioChange}
-                // onClick={handleStatus}
               />
               <label className="btn btn-outline-primary" htmlFor="radio3">
                 completed
@@ -106,7 +103,6 @@ const AdminOrderDetail = () => {
                 autoComplete="off"
                 checked={selectedRadio === 'cancelled'}
                 onChange={handleRadioChange}
-                // onClick={handleStatus}
               />
               <label className="btn btn-outline-primary" htmlFor="radio4">
                 cancelled
@@ -125,19 +121,4 @@ export default AdminOrderDetail
 
 
 
-// import React from 'react'
-// import AdminOrderDetailsComponent from '../components/info_admin/AdminOrderDetailsComponent'
 
-// const AdminOrderDetail = () => {
-//   return (
-//     <div>
-
-//       {/* <p>hej</p> */}
-
-//       <AdminOrderDetailsComponent /> 
-
-//     </div>
-//   )
-// }
-
-// export default AdminOrderDetail

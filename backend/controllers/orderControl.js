@@ -2,8 +2,6 @@ const router = require('express').Router()
 const { getOrders, createNewOrder, updateStatus, getOrderById } = require('../Model/orderModel')
 const auth = require('../authentication/auth')
 
-
-
 router.post('/add', auth.verifyTokenAdmin, createNewOrder)
 // router.get('/myOrders', auth.verifyTokenAdmin, getMyOrder )
 

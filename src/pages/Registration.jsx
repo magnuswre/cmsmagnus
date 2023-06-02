@@ -97,8 +97,6 @@ const Registration = () => {
       return {
       ...data,password: 'You need to enter a password'}})}
 
-
-
       if(formData.password != formData.confirmPassword){
         setError(data => {
         return{
@@ -106,10 +104,8 @@ const Registration = () => {
           
         }})
         return true
-
       }
 
-      console.log(formData);
           
         const res = await axios.post(' http://localhost:8080/api/user/register', formData)
         localStorage.setItem('token', JSON.stringify(res.data.token))
@@ -121,11 +117,7 @@ const Registration = () => {
         if(res){
           navigate('/')
         }
-    
-    
   }
-
-
 
   return (
     <div className='create-form'>
