@@ -4,6 +4,12 @@
   justify-content: space-around;
   padding: 1rem;
 }
+.header .user-message-nav {
+  font-weight: 900;
+}
+.header a {
+  font-weight: 700;
+}
 
 .title-logo,
 .navigation {
@@ -698,8 +704,8 @@
   height: 15px;
   border-radius: 50%;
   background-color: red;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 9px;
   color: #fff;
   text-align: center;
   font-size: 0.7rem;
@@ -757,6 +763,9 @@
 }
 .admin-page-details-container label {
   font-size: large;
+}
+.admin-page-details-container #underline {
+  text-decoration: underline;
 }
 .admin-page-details-container .d-flex {
   display: flex;
@@ -912,6 +921,25 @@
 }
 .additional-info-container .text-and-image img {
   margin-top: 0px;
+}
+
+.checkout-container {
+  max-width: 50%;
+  border: 1px solid;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 1000px;
+}
+
+.dashboard {
+  border: solid 2px;
+  font-weight: 700;
+}
+
+.handle-admin {
+  font-weight: 700;
 }
 
 * {

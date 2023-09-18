@@ -1,16 +1,17 @@
 import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export const ProductContext = createContext()
 
 const ProductContextProvider = ({ children, limit,  }) => {
 
-  
-
+  const navigate = useNavigate()
   const [data, setData] = useState([]);
   const { productId } = useParams() 
+  const [resultData, setResultData] = useState({})
 
+ 
  useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,8 +37,7 @@ const ProductContextProvider = ({ children, limit,  }) => {
 
 
   const changeProduct = async (formData) => {
-    console.log(formData)
-    const token = localStorage.getItem('token') 
+    const token = localStorage.getItem('admin-token') 
     const parse = JSON.parse(token)
 
     const fetchData = async () => {
@@ -48,21 +48,19 @@ const ProductContextProvider = ({ children, limit,  }) => {
                 Authorization: `Bearer ${parse}`
               }
             })
-            console.log(result.data)
+            console.log(formData)
+            setResultData(formData)
           } catch (error) {
           console.log("Error fetching data:", error);
         }
       };
       
       fetchData()
+      navigate(('/changedproduct'))
   }
 
-    
-
-  
-
-  const postProduct = async (formData) => {
-     const token = localStorage.getItem('token') 
+    const postProduct = async (formData) => {
+     const token = localStorage.getItem('admin-token') 
      const parse = JSON.parse(token)
  
      const fetchData = async () => {
@@ -74,6 +72,8 @@ const ProductContextProvider = ({ children, limit,  }) => {
                }
              })
              console.log(result.data)
+             
+             
            } catch (error) {
            console.log("Error fetching data:", error);
          }
@@ -82,7 +82,7 @@ const ProductContextProvider = ({ children, limit,  }) => {
    }
 
   const deleteProduct = async () => {
-    const token = localStorage.getItem('token') 
+    const token = localStorage.getItem('admin-token') 
      const parse = JSON.parse(token)
     try {
       const result = await axios.delete(`http://localhost:8080/api/product/${productId}`, 
@@ -97,6 +97,7 @@ const ProductContextProvider = ({ children, limit,  }) => {
     } catch (error) {
       console.log('Error fetching data:', error);
     }
+    navigate(('/deletedproduct'))
   };
 
 
@@ -111,6 +112,7 @@ const ProductContextProvider = ({ children, limit,  }) => {
     changeProduct,
     deleteProduct,
     postProduct,
+    resultData
     
 
    

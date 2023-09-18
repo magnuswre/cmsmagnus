@@ -1,90 +1,50 @@
-import { useContext, useState  } from "react";
-import { BsCart3 } from "react-icons/bs";
+import { useContext, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
-import { FaTrash } from "react-icons/fa";
+import CartProduct from "./CartProduct";
 
-const ShoppingCart = () => {
-  const { cartItems, totalQuantity, removeFromCart, clearCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
-  const [isToggled, setIsToggled] = useState(false);
+const ShoppingCart = ({ closeDropdown }) => {
+  const { cartItems, totalQuantity, clearCart, checkOut, isToggled, setIsToggled } = useContext(CartContext);
+
+  
 
    
-
-  const handleToggle = () => {
-    
-
-    setIsToggled(!isToggled);
-
-    console.log(window.event.target)
-    
-
+  const calculateTotal = () => {
+    let totalPrice = 0;
+    cartItems.forEach(item => {
+      totalPrice += item.product.price * totalQuantity;
+    });
+    return totalPrice;
   };
 
-  
-  
+  const handleClearCart = () => {
+    clearCart();
+    toggleDropdown();
+  };
 
-  const calculateTotal = () => {
-    let totalPrice = 0
-    cartItems.forEach(item => {
-      totalPrice = item.product.price * totalQuantity
-    })
-    return totalPrice
-  }
+  const handleCheckout = () => {
+    setIsToggled(!isToggled);
+    checkOut();
+  };
 
-  return (
-    <div className="shopping-cart-container">
-      <span className="rounded-pill">{totalQuantity}</span>
+  return ( 
 
-      {/* {!window.event.target} */}
-      {
-      isToggled ? (
-        <div className="expandable-cart">
-          {cartItems.length > 0 ? (
-            <>
-              {cartItems.map((item, index) => (
-              <div className="dropdown-top" key={index}>
-                <div className="cart-item-container">
-                  <div className="cart-image">
-                    <img src={item.product.imageURL} alt={item.product.imageURL} />
-                  </div>
-                  <div>
-                    <p>{item.product.name}</p>
-                    <small>{item.quantity}x {item.product.price} SEK</small>
-                  </div>
-                </div>
-
-                <div className='button-container'>
-                  <div role="group">
-                    <button onClick={() => decrementQuantity(index)}>-</button>
-                    <button onClick={() => incrementQuantity(index)}>+</button>
-                  </div>
-                  <FaTrash onClick={removeFromCart} />
-                </div>
-              </div>
-              ))}
-              <span className="divider"></span>
-              <div className="dropdown-bottom">
-                <div className="price-info">
-                  <p>Total: {calculateTotal()} SEK</p>
-                  <small>incl. vat</small>
-                </div>
-                <div>
-                  <button onClick={clearCart}>Clear Cart</button>
-                  <button>Checkout</button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <p className="empty-cart">Your cart is empty.</p>
-          )}
-        </div>
-      ) 
-      
-      : (
-        <div></div>
+    
+    <div onClick={e => e.stopPropagation()}>
+      {cartItems.length < 1 && (
+        <div className="p-2 text-center">Your cart is empty.</div>
       )}
-
-
-      <BsCart3 onClick={handleToggle} size={30} />
+      {cartItems.map((item, index) => <CartProduct key={index + item.product._id} item={item} index={index} />)}
+      <div className="dropdown-divider"></div>
+      <div className="d-flex justify-content-between align-items-center p-2">
+        <div className="price-info">
+          <p className="m-0">Total: {calculateTotal()} SEK</p>
+          <small className='text-muted'>incl. vat</small>
+        </div>
+        <div className="d-flex gap-2">
+          <button className="btn btn-cart clear" onClick={handleClearCart}>Clear Cart</button>
+          <button className="btn btn-cart info" onClick={handleCheckout}>Checkout</button>
+        </div>
+      </div>
     </div>
   );
 };

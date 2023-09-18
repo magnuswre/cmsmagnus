@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { OrderContext } from '../contexts/OrderContext'
-import ShoppingCart from '../components/shoppingcart/ShoppingCart'
+import ShoppingCartUserProfile from '../components/shoppingcart/ShoppingCartUserProfile'
 
 const UserProfile = () => {
-  const { orderData} = useContext(OrderContext)
+  const { orders } = useContext(OrderContext)
 
-  console.log(orderData)
+  console.log(orders)
 
-  if (!orderData) {
+  if (!orders) {
     return <div>Loading...</div>
   }
 
@@ -16,11 +16,11 @@ const UserProfile = () => {
     <div className="orders">
      <div className='active-order'>
       {
-       <ShoppingCart />
+       <ShoppingCartUserProfile />
       }
      </div>
      <div className='historic-orders'>
-      {orderData.map(order => (
+      {orders.map(order => (
         <div key={order._id}>
           <h3>Order ID: {order._id}</h3>
           <h4>Order Rows:</h4>

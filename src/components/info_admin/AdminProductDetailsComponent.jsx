@@ -6,7 +6,6 @@ import { ProductContext } from '../../contexts/ProductContext';
 const AdminProductDetailsComponent = () => {
   const [formData, setFormDataTwo] = useState([])
   const { data  } = useContext(ProductDetailContext)
-
   const { changeProduct, deleteProduct } = useContext(ProductContext)
 
  const handleChange = (e) =>{
@@ -27,22 +26,28 @@ const AdminProductDetailsComponent = () => {
 
             <div className="admin-product-details-info">
             <div className='form-group-product'>
-              <p>Change picture: </p>
-              <label htmlFor="">Image URL:</label>
-              <input type="text" id='_product_URL' name = "imageURL" onChange={handleChange}/>
+              <label htmlFor="_product_name">Product name:</label>
+              <input type="text" id='_product_name' placeholder={data.name} name = "name" onChange={handleChange}/>
             </div>
-            <div className='form-group-product'>
-              <label htmlFor="_product_name">Name:</label>
-              <input type="text" id='_product_name' name = "name" onChange={handleChange}/>
-            </div>
+
             <div className='form-group-product'>
               <label htmlFor="_product_description">Description:</label>
-              <input type="text" id='_product_description' name = "description" onChange={handleChange}/>
+              <input type="text" id='_product_description' placeholder={data.description} name = "description" onChange={handleChange}/>
             </div>
+
             <div className='form-group-product'>
                 <label htmlFor="_product_price">Price:</label>
-                  <input type="text" id='_product_price' name = "price" onChange={handleChange}/>
+                  <input type="text" id='_product_price' placeholder={data.price} name = "price" onChange={handleChange}/>
             </div>
+
+
+            <div className='form-group-product'>
+              <label htmlFor="">Image URL:</label>
+              <input type="text" id='_product_URL' placeholder={data.imageURL} name = "imageURL" onChange={handleChange}/>
+            </div>
+            
+            
+           
             
            <div className='form-group-product'>
             <p className="category">Category: Clothes</p>

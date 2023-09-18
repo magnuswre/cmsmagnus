@@ -1,20 +1,19 @@
 import React, { useContext } from 'react'
-import { OrderContext } from '../contexts/OrderContext'
 import { Link } from 'react-router-dom'
+import { AdminOrderContext } from '../../contexts/AdminOrderContext'
 
 const AdminOrders = () => {
-  const { orderData} = useContext(OrderContext)
-  console.log(orderData)
+  const { orders } = useContext(AdminOrderContext)
+  console.log(orders)
 
-  if(!orderData){
+  if(!orders){
     return
   }
   
   return (
   <div className='admin-orders-container'>
-    
-    {orderData.map(order => (
-    <Link to={`/adminorderdetails/${order._id}`} key={order._id}>
+    {orders.map(order => (
+     <Link to={`/adminorderdetails/${order._id}`} key={order._id}>
       <div className='order-item'>
         <h3>Order ID: {order._id}</h3>
         <p>Status: {order.status} </p>

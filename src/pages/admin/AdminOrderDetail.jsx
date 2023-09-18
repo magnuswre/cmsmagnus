@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { OrderContext } from '../contexts/OrderContext'
+// import { OrderContext } from '../../contexts/OrderContext'
 import { useParams } from 'react-router-dom'
+import { AdminOrderContext } from '../../contexts/AdminOrderContext'
 
 const AdminOrderDetail = () => {
 
-  const { orderData, updateStatus } = useContext(OrderContext)
-   console.log(orderData)
+  const { orders, updateStatus } = useContext(AdminOrderContext)
+   console.log(orders)
   const { orderId } = useParams()
   console.log(orderId)
 
-  const order = orderData.find(order => order._id === orderId);
+  const order = orders.find(order => order._id === orderId);
   console.log(order)
   const [selectedRadio, setSelectedRadio] = useState(order?.status || 'radio1');
 
@@ -21,7 +22,7 @@ const AdminOrderDetail = () => {
   useEffect(() => {
     const handleStatus = async () => {
       try {
-        console.log('Updating status: orderId=', orderId, 'selectedRadio=', selectedRadio);
+        console.log('Updating status: orderId =', orderId, 'selectedRadio =', selectedRadio);
         await updateStatus(orderId, selectedRadio);
       } catch (error) {
         console.log('Error updating status:', error);
@@ -31,8 +32,8 @@ const AdminOrderDetail = () => {
   }, [selectedRadio])
   
 
-  console.log(orderData);
-    if(!orderData){
+  console.log(orders);
+    if(!orders){
       return
     }
 

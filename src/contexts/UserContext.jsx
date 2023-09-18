@@ -2,11 +2,11 @@ import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext()
 
-const UserContextProvider = ({children}) => {
+  const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user-token");
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser));

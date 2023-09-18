@@ -4,6 +4,7 @@ const auth = require('../authentication/auth')
 
 
 router.post('/add', auth.verifyTokenAdmin, productModel.createNewProduct)
+
 router.get('/', productModel.getAllProduct)
 
 router.get('/:id', productModel.getProductById)

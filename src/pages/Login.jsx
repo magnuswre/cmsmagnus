@@ -1,11 +1,13 @@
-import  { useState } from 'react'
+import  { useState, useContext } from 'react'
 import axios from 'axios'
 import {useNavigate, Link} from 'react-router-dom'
+import { UserContext } from '../contexts/UserContext'
 
 
 const Login = () => {
 
   const navigate = useNavigate()
+  const { setUser } = useContext(UserContext)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -13,25 +15,27 @@ const Login = () => {
   })
 
   const handleChange = e => {
-    setFormData(preData => {
-      return {
-        ...preData,
-        [e.target.name]: e.target.value
-      }
-    })
+    setFormData(prevState => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await axios.post('http://localhost:8080/api/user/login', formData)
-    console.log(res);
-
-    setFormData(initState)
-    if(res){
-      navigate('/')
+    try {
+      const res = await axios.post('http://localhost:8080/api/user/login', formData)
+      const user = res.data.token;
+      console.log(res)
+      setUser(user)
+      localStorage.setItem('user-token', JSON.stringify(res.data.token))
+      // localStorage.setItem('user', JSON.stringify(user))
+      navigate('/userprofile')
+    } catch (error) {
+      console.error('Login error:', error)
     }
-  }
+  };
   
 
 
@@ -48,10 +52,7 @@ const Login = () => {
           <label htmlFor="password">Password*</label><p className='red-text1'></p>
           <input type="password" name='password' className='input' id='password' value={formData.password} onChange={handleChange}/>
         </div>
-        <div>
-          <input className='checkbox' type="checkbox" />
-          <label className='text' htmlFor="checkbox">Please keep me logged in</label>
-        </div>
+        
         <button className='btn btn-primary'>Submit</button>
       </form>
     </div>

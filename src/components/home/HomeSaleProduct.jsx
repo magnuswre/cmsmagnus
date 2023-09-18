@@ -13,8 +13,8 @@ const HomeSaleProduct = ({ card }) => {
       </div>
       <div className='product-info'>
         <div className='sale-price'>
-          <p>299,00 kr</p>
-          <p>{card.price}</p>
+          <p>999 SEK</p>
+          <p>{card.price} SEK</p>
         </div>
         <MdAddShoppingCart style={{color: '#a1a1a1'}}/>
       </div>

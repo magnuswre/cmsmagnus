@@ -1,10 +1,15 @@
 import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
+  const navigate = useNavigate()
+
   const [cartItems, setCartItems] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  const [isToggled, setIsToggled] = useState(false);
   
   useEffect(() => {
     const storedItems = localStorage.getItem('cart')
@@ -74,6 +79,14 @@ const CartProvider = ({ children }) => {
 
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
+  const checkOut = () => {
+
+    
+    navigate('/checkout')
+    setIsToggled(false)
+    
+}
+
   const value = {
     cartItems,
     addToCart,
@@ -82,7 +95,10 @@ const CartProvider = ({ children }) => {
     cartCount,
     decrementQuantity,
     incrementQuantity,
-    totalQuantity
+    totalQuantity,
+    checkOut,
+    isToggled,
+    setIsToggled
   };
 
   return (

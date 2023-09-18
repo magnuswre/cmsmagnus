@@ -33,45 +33,37 @@ exports.checkAdmin = (req, res, next) => {
   }
 };
 
-
-
-
-
-
-
-
-
 // USER
 
 
-// exports.generateTokenUser = (user) => {
-//     return jwt.sign({_id: user._id, displayName: user.displayName}, secretKey, {expiresIn: '1d'})
-// }
+exports.generateTokenUser = (user) => {
+    return jwt.sign({_id: user._id, displayName: user.displayName}, secretKey, {expiresIn: '1d'})
+}
 
-// exports.verifyTokenUser = (req, res, next) => {
-//     try {
-//         const token = req.headers.authorization.split(' ')[1];
-//         req.userId = jwt.verify(token, secretKey)._id
-//         next()
-//     } catch {
-//         return res.status(401).json({
-//             message: 'Admin access required'
-//         })
-//     }
-// }
+exports.verifyTokenUser = (req, res, next) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        req.userId = jwt.verify(token, secretKey)._id
+        next()
+    } catch {
+        return res.status(401).json({
+            message: 'Admin access required'
+        })
+    }
+}
 
-// exports.verifyTokenUser = (req, res, next) => {
-//     try {
-//         const token = req.headers.authorization.split(' ')[1];
-//         req.userId = jwt.verify(token, secretKey)._id
-//         next()
-//     } catch {
-//         return res.status(401).json({
-//             message: 'Admin access required'
-//         })
+exports.verifyTokenUser = (req, res, next) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        req.userId = jwt.verify(token, secretKey)._id
+        next()
+    } catch {
+        return res.status(401).json({
+            message: 'Admin access required'
+        })
         
-//     }
-// }
+    }
+}
 
 // mwdev81@gmail.com - password: Bytmig123
 // const User = ['646f47da432224a6ad148144']

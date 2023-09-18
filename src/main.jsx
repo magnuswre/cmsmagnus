@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom'
 
 import CartProvider from './contexts/CartContext.jsx'
 import UserContextProvider from './contexts/UserContext.jsx'
+import AdminContextProvider from './contexts/AdminContext.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <CartProvider>
-      <UserContextProvider>
-        <App />
+    <AdminContextProvider>
+      <CartProvider>
+        <UserContextProvider>
+          <App />
         </UserContextProvider>
-    </CartProvider>
+       </CartProvider>
+    </AdminContextProvider>
   </BrowserRouter>
 );
 

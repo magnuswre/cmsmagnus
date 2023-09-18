@@ -1,12 +1,19 @@
-
-
-
 .header {
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 1rem;
+
+    .user-message-nav{
+        font-weight: 900;
+    }
+
+    a{
+        font-weight: 700;
+      }
 }
+
+
 
 .title-logo,
 .navigation {
@@ -14,3 +21,4 @@
     align-items: center;
     gap: 1rem;
 }
+

@@ -59,7 +59,7 @@ const ProductDetailInfo = () => {
                 <p>5.0 (25 reviews)</p>
             </div>
             <div className="price">
-                <span>{data.price}</span>
+                <span>{data.price} SEK</span>
             </div>
             <div className="quantity">
                 <button className="quantity-button" onClick={decrementQuantity}>-</button>

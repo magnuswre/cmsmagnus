@@ -1,28 +1,22 @@
 import  { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import {useNavigate, Navigate, Link} from 'react-router-dom'
-import { UserContext } from '../contexts/UserContext'
+import { AdminContext } from '../../contexts/AdminContext'
+
+
 
 const AdminLogin = () => {
 
   const navigate = useNavigate()
-  const { setUser } = useContext(UserContext)
-
+  const { setAdmin } = useContext(AdminContext)
+  
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('admin');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  
-
- const handleChange = e => {
+ 
+const handleChange = e => {
     setFormData(preData => {
       return {
         ...preData,
@@ -34,13 +28,12 @@ const AdminLogin = () => {
   const handleSubmit = async e => {
     e.preventDefault()
   try {
-
     const res = await axios.post('http://localhost:8080/api/admin/login', formData)
-    const user = res.data.token;
-      setUser(user)
-      localStorage.setItem('token', JSON.stringify(res.data.token))
-    console.log(res);
-    navigate('/adminPage')
+    const admin = res.data.token;
+      setAdmin(admin)
+      localStorage.setItem('admin-token', JSON.stringify(res.data.token))
+      console.log(res);
+      navigate('/adminpage')
     } catch (error) {
       console.error('Login error:', error)
     }
@@ -60,10 +53,7 @@ const AdminLogin = () => {
           <label htmlFor="password">Password*</label><p className='red-text1'></p>
           <input type="password" name='password' className='input' id='password' value={formData.password} onChange={handleChange}/>
         </div>
-        <div>
-          <input className='checkbox' type="checkbox" />
-          <label className='text' htmlFor="checkbox">Please keep me logged in</label>
-        </div>
+     
         <button className='btn btn-primary'>Submit</button>
       </form>
     </div>

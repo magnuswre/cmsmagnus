@@ -1,41 +1,69 @@
 import React, { useContext, useEffect } from 'react'
-import { FaAdn } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 import { BsSearch, BsCart3 } from "react-icons/bs";
+import { FaTshirt } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import ShoppingCart from './shoppingcart/ShoppingCart';
 import { CartContext } from '../contexts/CartContext';
 import { UserContext } from '../contexts/UserContext';
+import { AdminContext } from '../contexts/AdminContext';
+import CartDropdown from './shoppingcart/CartDropdown';
+
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const { user , setUser } = useContext(UserContext)
+  const { admin, setAdmin } = useContext(AdminContext)
+  // console.log(admin)
 
-  const { totalQuantity } = useContext(CartContext);
+  const { totalQuantity, isToggled, setIsToggled } = useContext(CartContext);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
+  // const toggleDropdown = () => {
+  //   setIsToggled(!isToggled);
+  // };
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem('user');
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser));
+  //   }
+  // }, []);
+
+  const handleLogoutUser = () => {
+    localStorage.removeItem('user-token');
     localStorage.removeItem('user');
     setUser(null);
   };
+  const handleLogoutAdmin = () => {
+    localStorage.removeItem('admin-token');
+    setAdmin(null);
+  };
+
+ const goToDashboad = () => {
+  navigate('/adminpage')
+    
+ }
 
   return (
     <div className='header'>
       <div className='title-logo'>
-        <FaAdn size={35} />
-        <h1>ECOMMERCE</h1>
+       <FaTshirt size={35} />
+        <h1>TRENDY THREADS</h1>
+        {admin ? <>
+        <button className='btn btn-danger btn-sm handle-admin' onClick={handleLogoutAdmin}>Logout Admin</button>
+        <button className='btn btn-sm dashboard' onClick={goToDashboad} >Dashboard</button>
+        </>  :  <>
+        <p></p>
+        </>}
+        
       </div>
       <div className='navigation'>
         <li>
           <NavLink to='/'>HOME</NavLink>
         </li>
         <li>
-          <NavLink to='/product'>PRODUCT</NavLink>
+          <NavLink to='/product'>PRODUCTS</NavLink>
         </li>
         <li>
           <NavLink to='/contact'>CONTACT</NavLink>
@@ -43,10 +71,10 @@ const Navbar = () => {
         {user ? (
           <>
           <NavLink to='/userprofile'>
-            <li className='text-uppercase'>USER</li>
+            <li className='text-uppercase btn user-message-nav'>WELCOME USER</li>
           </NavLink>
             <li>
-              <button className='btn btn-danger btn-sm' onClick={handleLogout}>Logout</button>
+              <button className='btn btn-danger btn-sm' onClick={handleLogoutUser}>Logout</button>
             </li>
           </>
         ) : (
@@ -57,20 +85,10 @@ const Navbar = () => {
         <li>
           <BsSearch />
         </li>
-        <li className='nav-item dropdown'>
-          <div
-            className='nav-link'
-            role='button'
-            data-bs-toggle='dropdown'
-            aria-expanded='false'
-          >
-            <BsCart3 size={30} />
-            {totalQuantity > 0 && <span className='rounded-pill'>{totalQuantity}</span>}
-          </div>
-          <ul className='dropdown-menu dropdown-menu-end shopping-cart'>
-            <ShoppingCart />
-          </ul>
-        </li>
+
+        <CartDropdown />
+       
+         
       </div>
     </div>
   );

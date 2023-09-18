@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { ProductContext } from '../../contexts/ProductContext'
 import { Link } from 'react-router-dom'
 
+
+
 const AdminPageDetails = () => {
 
     const [formData, setFormData] = useState([])
@@ -22,7 +24,7 @@ const AdminPageDetails = () => {
  <div className='admin-page-details-container'>
   
       <div className='admin-page-details-form' >
-        <Link to="/adminorders"><h2>See all orders HERE</h2></Link>
+        <Link to="/adminorders"><h2>See all orders <span id='underline'>HERE</span> </h2></Link>
         
         <h1>Add a new product:</h1>
         <div className='d-flex'>
@@ -41,7 +43,9 @@ const AdminPageDetails = () => {
           <label htmlFor="product_imageURL">ImageURL:</label>
           <input type="text"  id='product_imageURL' name = "imageURL" onChange={handleChangeInput}/>
       </div>
-           <button className='btn btn-primary' onClick={() => postProduct(formData )}>ADD PRODUCT</button>
+      <button className='btn btn-primary' onClick={() => {
+          postProduct(formData);
+          }}>ADD PRODUCT</button>
       </div>
           
 
@@ -62,7 +66,7 @@ const AdminPageDetails = () => {
           />
            <h2>{product.title}</h2>
           <p>{product.description}</p>
-          <p className="price">Price: ${product.price}</p>
+          <p className="price">Price: {product.price} SEK</p>
         </div>
       </Link>
     ))}
